@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeChat AI - Codebase Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                    </svg>
+                </div>
+                <span class="logo-text">CodeChat AI</span>
+            </div>
+        </div>
+        
+        <!-- Repository Section -->
+        <div class="repo-section">
+            <div class="section-label">Repository</div>
+            <div class="repo-input-wrapper">
+                <input 
+                    type="text" 
+                    id="repoPath" 
+                    class="repo-input" 
+                    placeholder="Enter repository path..."
+                    spellcheck="false"
+                >
+                <button id="loadRepoBtn" class="load-btn" title="Load Repository">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 002-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="repoStatus" class="repo-status">
+                <span class="status-dot"></span>
+                <span class="status-text">No repository loaded</span>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div class="section-label">Quick Questions</div>
+            <button class="quick-btn" data-question="What is the main purpose of this codebase?">
+                <span>🎯</span> Project purpose
+            </button>
+            <button class="quick-btn" data-question="What are the main files and their responsibilities?">
+                <span>📁</span> File structure
+            </button>
+            <button class="quick-btn" data-question="What technologies and frameworks are used?">
+                <span>⚡</span> Tech stack
+            </button>
+            <button class="quick-btn" data-question="Are there any potential improvements or issues in the code?">
+                <span>💡</span> Improvements
+            </button>
+        </div>
+
+        <!-- Stats Section -->
+        <div id="statsSection" class="stats-section hidden">
+            <div class="section-label">Repository Stats</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="statFiles">0</div>
+                    <div class="stat-label">Files</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statChunks">0</div>
+                    <div class="stat-label">Chunks</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statVectors">0</div>
+                    <div class="stat-label">Vectors</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="footer-text">Powered by RAG + Gemini</div>
+        </div>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="main-content">
+        <!-- Chat Header -->
+        <header class="chat-header">
+            <h1>Analyze Your Codebase</h1>
+            <p>Load a repository and ask questions about your code</p>
+        </header>
+
+        <!-- Chat Messages -->
+        <div class="chat-container" id="chatContainer">
+            <div class="messages" id="messages">
+                <!-- Welcome Message -->
+                <div class="message assistant">
+                    <div class="message-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                        </svg>
+                    </div>
+                    <div class="message-content">
+                        <div class="message-text">
+                            <p>👋 Welcome to <strong>CodeChat AI</strong>!</p>
+                            <p>I can help you understand any codebase. Here's how to get started:</p>
+                            <ol>
+                                <li>Enter your repository path in the sidebar</li>
+                                <li>Click the upload button to load it</li>
+                                <li>Ask me anything about your code!</li>
+                            </ol>
+                            <p class="hint">💡 Try paths like <code>C:/Users/YourName/Projects/my-app</code></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area">
+            <div class="input-wrapper">
+                <textarea 
+                    id="messageInput" 
+                    class="message-input" 
+                    placeholder="Ask a question about your code..."
+                    rows="1"
+                    disabled
+                ></textarea>
+                <button id="sendBtn" class="send-btn" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="input-hint">
+                <span id="inputHint">Load a repository to start chatting</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text" id="loadingText">Processing...</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
