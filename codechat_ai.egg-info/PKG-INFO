@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: codechat-ai
+Version: 1.0.0
+Requires-Dist: fastapi==0.109.0
+Requires-Dist: uvicorn[standard]==0.27.0
+Requires-Dist: faiss-cpu
+Requires-Dist: sentence-transformers>=2.3.0
+Requires-Dist: google-generativeai==0.8.6
+Requires-Dist: python-dotenv==1.0.0
+Requires-Dist: langchain-text-splitters>=0.2.0
+Requires-Dist: pydantic>=2.5.3
+Requires-Dist: rich
+Dynamic: requires-dist

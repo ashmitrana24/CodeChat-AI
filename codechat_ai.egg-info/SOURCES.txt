@@ -1,0 +1,15 @@
+cli.py
+setup.py
+codechat_ai.egg-info/PKG-INFO
+codechat_ai.egg-info/SOURCES.txt
+codechat_ai.egg-info/dependency_links.txt
+codechat_ai.egg-info/entry_points.txt
+codechat_ai.egg-info/requires.txt
+codechat_ai.egg-info/top_level.txt
+modules/__init__.py
+modules/chunking.py
+modules/embeddings.py
+modules/ingestion.py
+modules/question_processor.py
+modules/rag_generator.py
+modules/vector_store.py
